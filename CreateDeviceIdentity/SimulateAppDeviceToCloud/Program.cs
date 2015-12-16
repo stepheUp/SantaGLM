@@ -30,7 +30,6 @@ namespace SimulateAppDeviceToCloud
         private static async void SendDeviceToCloudMessagesAsync()
         {
 
-            double avgWindSpeed = 10; // m/s
             Random rand = new Random();
 
             while (true)
