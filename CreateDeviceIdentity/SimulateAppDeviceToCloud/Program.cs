@@ -14,9 +14,15 @@ namespace SimulateAppDeviceToCloud
         static DeviceClient deviceClient;
         static string iotHubUri = "SantaGLM-IoTHub.azure-devices.net";
         static string deviceKey = "oTXYY/HeTxfFY73OT26wqFMemuILqUqFLLUUQtTS+VU=";
-        static string[] countries = new[] { "France", "Slovakia", "Czech Republic", "Germany", "Nederland", "Spain" };
-        static string[] emotions = new[] { "happy", "superhappy", "neutral","cry"};
-        static string[] box_statuses = new[] { "open", "close" };
+        static string[] gifts = new[] { "Doll", "Car", "Minecraft", "XBox", "Bike", "Ball", "Band", "Book"};
+        static string[] cities = new[] { "Paris", "Bratislava", "Prague", "Berlin", "Moscow", "Madrid","Amsterdam" };
+        static string[] emotions = new[] { "Anger", "Contempt", "Disgust", "Fear", "Happiness", "Neutral", "Sadness", "Surprise" };
+        static string[] giftTypes = new[] { "car", "doll", "book", "bike", "xbox one", "play station 4"};
+
+         
+
+
+        static string[] box_states = new[] { "open", "close" };
 
         static void Main(string[] args)
         {
@@ -34,21 +40,26 @@ namespace SimulateAppDeviceToCloud
 
             while (true)
             {
-                int randCountryID = rand.Next(0, countries.Length);
+                int randGiftID = rand.Next(0, gifts .Length);
+                int randCityID = rand.Next(0, cities.Length);
                 int randEmotionID = rand.Next(0, emotions .Length);
-                int randBoxStatusID = rand.Next(0, box_statuses.Length);
+                int randBoxStateID = rand.Next(0, box_states.Length);
+                int randGiftTypeID = rand.Next(0, giftTypes .Length);
 
-                string countryrand = countries[randCountryID];
-                string emotionrand =  countries[randEmotionID];
-                string box_statusrand = countries[randBoxStatusID];
+                string giftrand = gifts [randGiftID];
+                string cityrand = cities[randCityID];
+                string emotionrand =  emotions[randEmotionID];
+                string box_staterand = box_states [randBoxStateID];
+                string giftTyperand = giftTypes [ randGiftTypeID ];
 
 
                 var telemetryDataPoint = new
                 {
-                    deviceId = "santasFirstDevice",
-                    location = countryrand ,
+                    deviceid = giftrand ,
+                    location = cityrand ,
                     emotion = emotionrand ,
-                    boxstatus = box_statusrand  
+                    state = box_staterand,
+                    giftType = giftTyperand  
                 };
                 var messageString = JsonConvert.SerializeObject(telemetryDataPoint);
                 var message = new Message(Encoding.ASCII.GetBytes(messageString));
