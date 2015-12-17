@@ -7,22 +7,27 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid x:ConnectionId='1' x:Name="ContentGrid">
+        <Grid.Background>
+            <ImageBrush ImageSource="Assets/background.JPG"/>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <CaptureElement x:ConnectionId='1' x:Name="mediaPreview" Grid.Column="0" />
-        <Grid Grid.Column="1">
-            <Image x:ConnectionId='2' x:Name="imagePreview"/>
-            <Canvas x:ConnectionId='3' x:Name="facesLayer"/>
-            <Button x:ConnectionId='4' x:Name="captureButton" 
+        <CaptureElement x:ConnectionId='2' x:Name="mediaPreview" Grid.Column="0"/>
+        <Grid x:ConnectionId='3' x:Name="facesGrid" Grid.Column="1">
+            <Image x:ConnectionId='4' x:Name="imagePreview"/>
+            <Canvas x:ConnectionId='5' x:Name="facesLayer"/>
+            <Button x:ConnectionId='6' x:Name="captureButton" 
                     Grid.Row="1" 
                     Content="Capture" 
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Bottom"
-                    Background="Blue"
+                    Background="#FF66CFE4"
                     Foreground="White"
+                    BorderBrush="White"
+                    Margin="0,4"
                                                />
         </Grid>
     </Grid>
