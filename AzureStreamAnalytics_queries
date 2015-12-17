@@ -1,0 +1,37 @@
+Queries in Azure Stream Analytics for PowerBI dashboard
+=========================================================
+
+/*cities, where Santa is not doing good job in last 1 minute*/
+SELECT
+    location, COUNT(location) as locationcount
+INTO
+    powerbilocations
+FROM
+    SantaInput
+Where emotion <> 'Happiness' and emotion <> 'Surprise'  and state = 'open'  
+GROUP BY
+    location,
+    TumblingWindow(second, 5)
+HAVING
+    locationcount >= 2 
+
+/*all data - this definitely needs optimization, but is good in devtest phase to insight data in PowerBI*/
+SELECT
+    *
+INTO
+    powerbiallalias
+FROM
+    SantaInput
+
+
+================================================================
+Query for ASA for CSV output for MachineLearning 
+================================================================
+/* For Machine learnign purpose */
+SELECT
+    location, deviceId, emotion, giftType, rating
+INTO
+    SantaGMLSABlobAsCSV
+FROM
+    SantaGLMSAInput
+
